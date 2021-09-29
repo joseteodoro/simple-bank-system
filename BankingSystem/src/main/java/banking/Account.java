@@ -11,41 +11,47 @@ package banking;
  * {@link #balance}: double
  */
 public abstract class Account {
-	private AccountHolder accountHolder;
-	private Long accountNumber;
-	private int pin;
-	private double balance;
+	private final AccountHolder accountHolder;
+
+	private final Long accountNumber;
+
+	private final int pin;
+
+	// thread safe here please
+	private volatile double balance;
 
 	protected Account(AccountHolder accountHolder, Long accountNumber, int pin, double startingDeposit) {
-		// complete the constructor
+		this.accountHolder = accountHolder;
+		this.accountNumber = accountNumber;
+		this.pin = pin;
+		this.balance = startingDeposit;
 	}
 
 	public AccountHolder getAccountHolder() {
-		// complete the function
-        return null;
+		return this.accountHolder;
 	}
 
 	public boolean validatePin(int attemptedPin) {
-		// complete the function
-        return true;
+		return this.pin == attemptedPin;
 	}
 
 	public double getBalance() {
-		// complete the function
-        return -1;
+		return this.balance;
 	}
 
 	public Long getAccountNumber() {
-		// complete the function
-        return -1L;
+		return this.accountNumber;
 	}
 
 	public void creditAccount(double amount) {
-		// complete the function
+		this.balance += amount;
 	}
 
-	public boolean debitAccount(double amount) {
-		// complete the function
-        return true;
+	// not great about perfomance, but at least is thread safe.
+	// TODO make it better later
+	public synchronized boolean debitAccount(double amount) {
+		if (this.balance < amount) return false;
+		this.balance -= amount;
+		return true;
 	}
 }
