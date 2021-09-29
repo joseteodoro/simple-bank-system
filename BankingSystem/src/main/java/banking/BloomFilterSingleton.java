@@ -31,7 +31,7 @@ public class BloomFilterSingleton {
     // have to be thread safe
     public synchronized Long generateAccountNumber() {
         // bloom filter is fast as possible to check existent items in a collection
-        // Iḿ mocking here cause lacking of time!
+        // I'm mocking here cause lacking of time!
         Long generatedLong = null;
         do {
             generatedLong = generateRandomLongNumber();
