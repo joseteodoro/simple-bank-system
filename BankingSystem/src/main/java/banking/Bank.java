@@ -53,21 +53,22 @@ public class Bank implements BankInterface {
 	}
 
 	public boolean authenticateUser(Long accountNumber, int pin) {
-		// complete the function
-        return true;
+		return this.accounts.containsKey(accountNumber) && this.accounts.get(accountNumber).validatePin(pin);
 	}
 
 	public double getBalance(Long accountNumber) {
-		// complete the function
-        return -1;
+		return this.accounts.containsKey(accountNumber)
+			? this.accounts.get(accountNumber).getBalance()
+			: 0.f;
 	}
 
 	public void credit(Long accountNumber, double amount) {
-		// complete the function
+		if (this.accounts.containsKey(accountNumber)) {
+			this.accounts.get(accountNumber).creditAccount(amount);
+		}
 	}
 
 	public boolean debit(Long accountNumber, double amount) {
-		// complete the function
-        return true;
+		return this.accounts.containsKey(accountNumber) && this.accounts.get(accountNumber).debitAccount(amount);
 	}
 }
