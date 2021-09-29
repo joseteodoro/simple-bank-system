@@ -8,7 +8,9 @@ package banking;
  */
 // would like lombok here
 public class Transaction {
+
 	private Long accountNumber;
+
 	private Bank bank;
 
 	/**
@@ -23,20 +25,24 @@ public class Transaction {
 	 *             Account validation failed.
 	 */
 	public Transaction(Bank bank, Long accountNumber, int attemptedPin) throws Exception {
-		// complete the function
+		if (bank.authenticateUser(accountNumber, attemptedPin)) {
+			this.accountNumber = accountNumber;
+		}
+		else {
+			throw new IllegalArgumentException("Acess denied!");
+		}
+		this.bank = bank;
 	}
 
 	public double getBalance() {
-		// complete the function
-        return -1;
+		return this.bank.getBalance(accountNumber);
 	}
 
 	public void credit(double amount) {
-		// complete the function
+		this.bank.credit(accountNumber, amount);
 	}
 
 	public boolean debit(double amount) {
-		// complete the function
-        return true;
+		return this.bank.debit(accountNumber, amount);
 	}
 }

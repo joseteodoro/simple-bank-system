@@ -38,4 +38,5 @@ public class CommercialAccount extends Account {
 	public boolean isAuthorizedUser(Person person) {
 		return Objects.nonNull(person) && this.authorizedUsers.contains(person);
 	}
+
 }

@@ -52,6 +52,7 @@ public class Bank implements BankInterface {
 		return registryAccount(account);
 	}
 
+	// missing some logic about comercial accounts to validate if the user is authorized to do authenticate
 	public boolean authenticateUser(Long accountNumber, int pin) {
 		return this.accounts.containsKey(accountNumber) && this.accounts.get(accountNumber).validatePin(pin);
 	}

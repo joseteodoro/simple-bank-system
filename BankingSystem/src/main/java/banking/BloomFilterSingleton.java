@@ -3,8 +3,8 @@ package banking;
 import java.util.HashSet;
 import java.util.Set;
 
+// just discovered that should be sequencial numbers! XD
 public class BloomFilterSingleton {
-    
 
     private static final long leftLimit = 1L;
     
