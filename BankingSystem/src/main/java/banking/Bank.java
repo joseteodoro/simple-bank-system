@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
+import java.util.function.Supplier;
 
 /**
  * Private Variables:<br>
@@ -27,16 +29,27 @@ public class Bank implements BankInterface {
 			: this.accounts.get(accountNumber);
 	}
 
-	public Long openCommercialAccount(Company company, int pin, double startingDeposit) {
-		// can we add more than one account per company?
+	private Account createAccount(AccountCreator creator, int pin, double startingDeposit) {
+		// can we add more than one account per holder?
+		Long accountNumber =  BloomFilterSingleton.getInstance().generateAccountNumber();
+		return creator.create(accountNumber, pin, startingDeposit);
+	}
 
-		new CommercialAccount(company, accountNumber, pin, startingDeposit)
-		return 
+	private Long registryAccount(Account account) {
+		this.accounts.put(account.getAccountNumber(), account);
+		return account.getAccountNumber();
+	}
+
+	public Long openCommercialAccount(Company company, int pin, double startingDeposit) {
+		AccountCreator creator = (n, p, d) -> new CommercialAccount(company, n, p, d);
+		Account account = this.createAccount(creator, pin, startingDeposit);
+		return registryAccount(account);
 	}
 
 	public Long openConsumerAccount(Person person, int pin, double startingDeposit) {
-		// complete the function
-        return -1L;
+		AccountCreator creator = (n, p, d) -> new ConsumerAccount(person, n, p, d);
+		Account account = this.createAccount(creator, pin, startingDeposit);
+		return registryAccount(account);
 	}
 
 	public boolean authenticateUser(Long accountNumber, int pin) {
