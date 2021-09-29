@@ -1,5 +1,6 @@
 package banking;
 
+// would like lombok here
 public class Person extends AccountHolder {
 
 	private final String firstName;

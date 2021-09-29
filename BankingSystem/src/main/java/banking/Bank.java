@@ -1,26 +1,37 @@
 package banking;
 
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.Objects;
 
 /**
  * Private Variables:<br>
  * {@link #accounts}: List&lt;Long, Account&gt;
  */
+// would like lombok here
 public class Bank implements BankInterface {
-	private LinkedHashMap<Long, Account> accounts;
+
+	// why should be linkedhere? removing that because linked one is slower than simple hash one
+	private Map<Long, Account> accounts;
 
 	public Bank() {
-		// complete the function
+		// make it thread safe cause we need to run in a concurrent environment;
+		this.accounts = Collections.synchronizedMap(new HashMap<>());
 	}
 
 	private Account getAccount(Long accountNumber) {
-		// complete the function
-        return null;
+		return (Objects.isNull(accountNumber))
+			? null
+			: this.accounts.get(accountNumber);
 	}
 
 	public Long openCommercialAccount(Company company, int pin, double startingDeposit) {
-		// complete the function
-        return -1L;
+		// can we add more than one account per company?
+
+		new CommercialAccount(company, accountNumber, pin, startingDeposit)
+		return 
 	}
 
 	public Long openConsumerAccount(Person person, int pin, double startingDeposit) {

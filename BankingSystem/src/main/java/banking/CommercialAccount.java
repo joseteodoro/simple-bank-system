@@ -9,6 +9,7 @@ import java.util.List;
  * Private Variables:<br>
  * {@link #authorizedUsers}: List&lt;Person&gt;<br>
  */
+// would like lombok here
 public class CommercialAccount  {
 	private List<Person> authorizedUsers;
 
