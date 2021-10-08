@@ -8,6 +8,8 @@ import java.util.Objects;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
+import javax.naming.InitialContext;
+
 /**
  * Private Variables:<br>
  * {@link #accounts}: List&lt;Long, Account&gt;
@@ -23,16 +25,10 @@ public class Bank implements BankInterface {
 		this.accounts = Collections.synchronizedMap(new HashMap<>());
 	}
 
-	private Account getAccount(Long accountNumber) {
-		return (Objects.isNull(accountNumber))
-			? null
-			: this.accounts.get(accountNumber);
-	}
-
-	private Account createAccount(AccountCreator creator, int pin, double startingDeposit) {
+	private Account createAccount(AccountCreator creator) {
 		// can we add more than one account per holder?
 		Long accountNumber =  BloomFilterSingleton.getInstance().generateAccountNumber();
-		return creator.create(accountNumber, pin, startingDeposit);
+		return creator.create(accountNumber);
 	}
 
 	private Long registryAccount(Account account) {
@@ -41,14 +37,14 @@ public class Bank implements BankInterface {
 	}
 
 	public Long openCommercialAccount(Company company, int pin, double startingDeposit) {
-		AccountCreator creator = (n, p, d) -> new CommercialAccount(company, n, p, d);
-		Account account = this.createAccount(creator, pin, startingDeposit);
+		AccountCreator creator = (accountNumber) -> new CommercialAccount(company, accountNumber, pin, startingDeposit);
+		Account account = this.createAccount(creator);
 		return registryAccount(account);
 	}
 
 	public Long openConsumerAccount(Person person, int pin, double startingDeposit) {
-		AccountCreator creator = (n, p, d) -> new ConsumerAccount(person, n, p, d);
-		Account account = this.createAccount(creator, pin, startingDeposit);
+		AccountCreator creator = (accountNumber) -> new ConsumerAccount(person, accountNumber, pin, startingDeposit);
+		Account account = this.createAccount(creator);
 		return registryAccount(account);
 	}
 
