@@ -10,6 +10,15 @@ import java.util.function.Supplier;
 
 import javax.naming.InitialContext;
 
+import banking.models.Account;
+import banking.models.CommercialAccount;
+import banking.models.Company;
+import banking.models.ConsumerAccount;
+import banking.models.Person;
+import banking.services.AccountCreator;
+import banking.services.BankInterface;
+import banking.services.BloomFilterSingleton;
+
 /**
  * Private Variables:<br>
  * {@link #accounts}: List&lt;Long, Account&gt;

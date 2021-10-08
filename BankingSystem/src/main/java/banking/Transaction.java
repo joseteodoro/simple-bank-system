@@ -29,7 +29,7 @@ public class Transaction {
 			this.accountNumber = accountNumber;
 		}
 		else {
-			throw new IllegalArgumentException("Acess denied!");
+			throw new IllegalArgumentException("Access denied!");
 		}
 		this.bank = bank;
 	}
