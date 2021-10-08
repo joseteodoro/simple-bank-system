@@ -5,6 +5,11 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
+import java.util.List;
+import java.util.function.Function;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
+
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -124,6 +129,53 @@ public class HiddenTest {
 		assertEquals(beforeDeposit3 + amount, bank.getBalance(daniel),0);
 		assertEquals(beforeDeposit4 + amount, bank.getBalance(bob), 0);
 		assertEquals(beforeDeposit5 + amount, bank.getBalance(smith), 0);
+	}
+
+	@Test
+	public void bankConcurrentCreditTest() {
+		double amount1 = 500.00;
+		double amount2 = 50.00;
+		double amount3 = 100.00;
+		double amount4 = 1.00;
+		double beforeDeposit1 = bank.getBalance(john);
+		double beforeDeposit2 = bank.getBalance(julia);
+		double beforeDeposit3 = bank.getBalance(daniel);
+		double beforeDeposit4 = bank.getBalance(bob);
+		double beforeDeposit5 = bank.getBalance(smith);
+
+		List<Execution> operations = List.of(
+			() -> bank.credit(john, amount1),
+			() -> bank.credit(julia, amount1),
+			() -> bank.credit(daniel, amount1),
+			() -> bank.credit(bob, amount1),
+			() -> bank.credit(smith, amount1),
+			() -> bank.credit(john, amount2),
+			() -> bank.credit(julia, amount2),
+			() -> bank.credit(daniel, amount2),
+			() -> bank.credit(bob, amount2),
+			() -> bank.credit(smith, amount2),
+			() -> bank.credit(john, amount3),
+			() -> bank.credit(julia, amount3),
+			() -> bank.credit(daniel, amount3),
+			() -> bank.credit(bob, amount3),
+			() -> bank.credit(smith, amount3),
+			() -> bank.credit(john, amount4),
+			() -> bank.credit(julia, amount4),
+			() -> bank.credit(daniel, amount4),
+			() -> bank.credit(bob, amount4),
+			() -> bank.credit(smith, amount4)
+		);
+
+		operations.parallelStream().map(exec -> {
+			exec.call();
+			return true;
+		}).collect(Collectors.toList()); // to force all the executions and wait until finish
+
+		assertEquals(beforeDeposit1 + amount1 + amount2 + amount3 + amount4, bank.getBalance(john), 0);
+		assertEquals(beforeDeposit2 + amount1 + amount2 + amount3 + amount4, bank.getBalance(julia), 0);
+		assertEquals(beforeDeposit3 + amount1 + amount2 + amount3 + amount4, bank.getBalance(daniel),0);
+		assertEquals(beforeDeposit4 + amount1 + amount2 + amount3 + amount4, bank.getBalance(bob), 0);
+		assertEquals(beforeDeposit5 + amount1 + amount2 + amount3 + amount4, bank.getBalance(smith), 0);
 	}
 
 	/**
