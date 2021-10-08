@@ -10,7 +10,7 @@ package banking;
  * {@link #pin}: int<br>
  * {@link #balance}: double
  */
-// would like lombok here
+
 public abstract class Account {
 	private final AccountHolder accountHolder;
 

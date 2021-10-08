@@ -1,6 +1,6 @@
 package banking;
 
-// would like lombok here
+
 public abstract class AccountHolder {
 	
 	private final int idNumber;

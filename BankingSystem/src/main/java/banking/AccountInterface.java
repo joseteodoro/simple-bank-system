@@ -3,7 +3,7 @@ package banking;
 /**
  * The public methods for the {@link Account} class
  */
-// would like lombok here
+
 public interface AccountInterface {
 
 	/**

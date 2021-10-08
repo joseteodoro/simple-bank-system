@@ -14,7 +14,7 @@ import javax.naming.InitialContext;
  * Private Variables:<br>
  * {@link #accounts}: List&lt;Long, Account&gt;
  */
-// would like lombok here
+
 public class Bank implements BankInterface {
 
 	// why should be linkedhere? removing that because linked one is slower than simple hash one

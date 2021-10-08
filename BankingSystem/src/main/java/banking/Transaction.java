@@ -6,7 +6,7 @@ package banking;
  * {@link #accountNumber}: Long<br>
  * {@link #bank}: Bank<br>
  */
-// would like lombok here
+
 public class Transaction {
 
 	private Long accountNumber;
