@@ -2,6 +2,7 @@ package banking;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.concurrent.atomic.AtomicLong;
 
 // just discovered that should be sequencial numbers! XD
 public class BloomFilterSingleton {
@@ -15,6 +16,8 @@ public class BloomFilterSingleton {
     // change it to a serious bloomfilter implementation
     private final Set<Long> items = new HashSet<>();
 
+    private AtomicLong accountNumber = new AtomicLong(0);
+
     // thread safe here!
     static {
         instance = new BloomFilterSingleton();
@@ -24,11 +27,12 @@ public class BloomFilterSingleton {
         return instance;
     }
 
+    // have to be thread safe
     private Long generateRandomLongNumber() {
-        return leftLimit + (long) (Math.random() * (rightLimit - leftLimit));
+        //return leftLimit + (long) (Math.random() * (rightLimit - leftLimit));
+        return accountNumber.incrementAndGet();
     }
 
-    // have to be thread safe
     public synchronized Long generateAccountNumber() {
         // bloom filter is fast as possible to check existent items in a collection
         // I'm mocking here cause lacking of time!
