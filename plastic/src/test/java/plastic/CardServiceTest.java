@@ -15,7 +15,7 @@ public class CardServiceTest {
     @Test
     public void whenUsingCreditCardsShouldReturnTheBrandProperly() {
         CardService service = CardService.of(new BrandDatabase().listBrandRanges());
-        SampleImmutableDatabase.entries.stream()
+        SampleDatabase.entries.stream()
             .forEach(entry -> {
                 String brandName = service.findBrandName(entry.getCard().getCardNumber());
                 assertEquals(

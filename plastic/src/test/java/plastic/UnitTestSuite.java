@@ -6,7 +6,7 @@ import org.junit.runners.Suite;
 @RunWith(Suite.class)
 
 @Suite.SuiteClasses({
-   SampleTest.class,
+   PerformanceTest.class,
    HiddenTest.class
 })
 
