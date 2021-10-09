@@ -28,3 +28,5 @@ hs_err_pid*
 **/.project
 **/.settings/
 **/.vscode/
+**/.apt_generated
+**/.apt_generated_tests
