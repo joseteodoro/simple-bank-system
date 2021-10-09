@@ -11,8 +11,8 @@ import org.junit.Test;
 import plastic.models.Brand;
 import plastic.models.CardEntry;
 import plastic.services.BrandDatabase;
-import plastic.services.CardService;
 import plastic.services.SampleDatabase;
+import plastic.services.search.CardService;
 
 public class PerformanceTest {
 
@@ -51,6 +51,27 @@ public class PerformanceTest {
         System.out.println("started at " + start);
         List<Brand> brands = SampleDatabase.largeBrandSample(LARGE_NUMBER);
         CardService service = CardService.of(brands);
+
+        long count = SampleDatabase.largeCardSample(LARGE_NUMBER, brands).parallelStream()
+            .map(entry -> {
+                String foundBrand = service.findBrandName(entry.getCard().getCardNumber());
+                return compare(entry, foundBrand);
+            })
+            .filter(res -> res)
+            .count();
+
+        assertTrue(count > 0);
+        System.out.println("created: " + count + " branded cards");
+        LocalTime finished = LocalTime.now();
+        System.out.println("Finished at " + finished);
+    }
+
+    @Test(timeout = FIVE_SECONDS)
+    public void shouldPerformGoodWithLargeCardSampleAndLargeBrandRangesCaching() throws IOException {
+        LocalTime start = LocalTime.now();
+        System.out.println("started at " + start);
+        List<Brand> brands = SampleDatabase.largeBrandSample(LARGE_NUMBER);
+        CardService service = CardService.of(brands, true);
 
         long count = SampleDatabase.largeCardSample(LARGE_NUMBER, brands).parallelStream()
             .map(entry -> {

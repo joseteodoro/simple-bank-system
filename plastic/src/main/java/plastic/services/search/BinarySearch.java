@@ -1,4 +1,4 @@
-package plastic.services;
+package plastic.services.search;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Optional;
 
 import plastic.models.Brand;
+import plastic.services.Sanitizer;
 
 public class BinarySearch {
 

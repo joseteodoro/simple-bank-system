@@ -1,4 +1,4 @@
-package plastic.services;
+package plastic.services.search;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
