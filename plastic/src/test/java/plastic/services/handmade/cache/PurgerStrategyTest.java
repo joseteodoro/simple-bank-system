@@ -1,4 +1,4 @@
-package plastic.services.cache;
+package plastic.services.handmade.cache;
 
 import static org.junit.Assert.assertEquals;
 
@@ -9,6 +9,9 @@ import java.util.List;
 import org.junit.Test;
 
 import plastic.models.Brand;
+import plastic.services.handmade.cache.Box;
+import plastic.services.handmade.cache.PurgeType;
+import plastic.services.handmade.cache.PurgerStrategy;
 
 public class PurgerStrategyTest {
 

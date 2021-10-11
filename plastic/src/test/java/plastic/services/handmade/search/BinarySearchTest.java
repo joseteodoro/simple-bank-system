@@ -1,4 +1,4 @@
-package plastic.services.search;
+package plastic.services.handmade.search;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -8,6 +8,7 @@ import java.util.List;
 import org.junit.Test;
 
 import plastic.models.Brand;
+import plastic.services.handmade.search.BinarySearch;
 
 public class BinarySearchTest {
     

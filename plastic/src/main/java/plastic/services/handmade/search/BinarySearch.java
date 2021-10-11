@@ -1,4 +1,4 @@
-package plastic.services.search;
+package plastic.services.handmade.search;
 
 import java.util.ArrayList;
 import java.util.Collections;

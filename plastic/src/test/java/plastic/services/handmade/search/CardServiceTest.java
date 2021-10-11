@@ -1,17 +1,19 @@
-package plastic.services;
+package plastic.services.handmade.search;
 
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-import plastic.services.search.CardService;
+import plastic.services.BrandDatabase;
+import plastic.services.SampleDatabase;
+import plastic.services.handmade.search.HandMadeCardService;
 
 
 public class CardServiceTest {
     
     @Test
     public void whenUsingCreditCardsShouldReturnTheBrandProperly() {
-        CardService service = CardService.of(new BrandDatabase().listBrandRanges());
+        HandMadeCardService service = HandMadeCardService.of(new BrandDatabase().listBrandRanges());
         SampleDatabase.smallCardSample().stream()
             .forEach(entry -> {
                 String brandName = service.findBrandName(entry.getCard().getCardNumber());

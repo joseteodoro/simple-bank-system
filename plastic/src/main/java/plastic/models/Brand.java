@@ -38,6 +38,14 @@ public class Brand implements Comparable<Brand> {
         return new Brand(name, startRange, endRange);
     }
 
+    public long getEndNumber() {
+        return endNumber;
+    }
+
+    public Long getStartNumber() {
+        return startNumber;
+    }
+
     @Override
     public int compareTo(Brand obj) {
         return this.startNumber.compareTo(obj.startNumber);

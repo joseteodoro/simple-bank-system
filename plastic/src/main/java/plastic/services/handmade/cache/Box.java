@@ -1,4 +1,4 @@
-package plastic.services.cache;
+package plastic.services.handmade.cache;
 
 import java.lang.ref.SoftReference;
 

@@ -1,4 +1,4 @@
-package plastic;
+package plastic.services.handmade;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -12,7 +12,7 @@ import plastic.models.Brand;
 import plastic.models.CardEntry;
 import plastic.services.BrandDatabase;
 import plastic.services.SampleDatabase;
-import plastic.services.search.CardService;
+import plastic.services.handmade.search.HandMadeCardService;
 
 public class PerformanceTest {
 
@@ -29,7 +29,7 @@ public class PerformanceTest {
         LocalTime start = LocalTime.now();
         System.out.println("started at " + start);
         List<Brand> brands = new BrandDatabase().listBrandRanges();
-        CardService service = CardService.of(brands);
+        HandMadeCardService service = HandMadeCardService.of(brands);
 
         long count = SampleDatabase.largeCardSample(LARGE_NUMBER, brands).parallelStream()
             .map(entry -> {
@@ -50,7 +50,7 @@ public class PerformanceTest {
         LocalTime start = LocalTime.now();
         System.out.println("started at " + start);
         List<Brand> brands = SampleDatabase.largeBrandSample(LARGE_NUMBER);
-        CardService service = CardService.of(brands);
+        HandMadeCardService service = HandMadeCardService.of(brands);
 
         long count = SampleDatabase.largeCardSample(LARGE_NUMBER, brands).parallelStream()
             .map(entry -> {
@@ -71,7 +71,7 @@ public class PerformanceTest {
         LocalTime start = LocalTime.now();
         System.out.println("started at " + start);
         List<Brand> brands = SampleDatabase.largeBrandSample(LARGE_NUMBER);
-        CardService service = CardService.of(brands, true);
+        HandMadeCardService service = HandMadeCardService.of(brands, true);
 
         long count = SampleDatabase.largeCardSample(LARGE_NUMBER, brands).parallelStream()
             .map(entry -> {
@@ -92,7 +92,7 @@ public class PerformanceTest {
         LocalTime start = LocalTime.now();
         System.out.println("started at " + start);
         List<Brand> brands = SampleDatabase.midBrandSample();
-        CardService service = CardService.of(brands);
+        HandMadeCardService service = HandMadeCardService.of(brands);
         List<CardEntry> cards = SampleDatabase.midCardSample();
 
         long count = cards.parallelStream()

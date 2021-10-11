@@ -1,4 +1,4 @@
-package plastic.services.cache;
+package plastic.services.handmade.cache;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
@@ -8,6 +8,8 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
 import plastic.models.Brand;
+import plastic.services.handmade.cache.CachingService;
+import plastic.services.handmade.cache.PurgeType;
 
 public class CachingServiceTest {
 
