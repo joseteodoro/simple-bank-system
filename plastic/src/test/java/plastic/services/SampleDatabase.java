@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.UUID;
 import java.util.function.Supplier;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import plastic.models.Brand;
@@ -55,7 +56,7 @@ public class SampleDatabase {
         
         return Stream.generate(randomCardNumberGenerator)
             .limit(size)
-            .toList();
+            .collect(Collectors.toList());
     }
 
     public static List<Brand> largeBrandSample(long size) throws IOException {
@@ -73,7 +74,7 @@ public class SampleDatabase {
         
         return Stream.generate(randomBrand)
             .limit(size)
-            .toList();
+            .collect(Collectors.toList());
     }
 
     public static List<Brand> midBrandSample() {
