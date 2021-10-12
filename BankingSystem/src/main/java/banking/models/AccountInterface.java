@@ -1,4 +1,4 @@
-package banking;
+package banking.models;
 
 /**
  * The public methods for the {@link Account} class

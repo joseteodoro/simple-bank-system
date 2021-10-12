@@ -1,4 +1,4 @@
-package banking;
+package banking.services;
 
 import java.util.concurrent.atomic.AtomicLong;
 

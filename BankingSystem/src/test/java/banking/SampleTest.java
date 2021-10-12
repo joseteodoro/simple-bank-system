@@ -10,11 +10,10 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import banking.Account;
 import banking.Bank;
-import banking.Company;
-import banking.Person;
 import banking.Transaction;
+import banking.models.Company;
+import banking.models.Person;
 
 public class SampleTest {
 	/**

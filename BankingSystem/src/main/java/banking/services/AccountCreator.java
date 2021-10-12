@@ -1,4 +1,6 @@
-package banking;
+package banking.services;
+
+import banking.models.Account;
 
 @FunctionalInterface
 public interface AccountCreator {

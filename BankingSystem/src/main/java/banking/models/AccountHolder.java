@@ -1,4 +1,4 @@
-package banking;
+package banking.models;
 
 
 public abstract class AccountHolder {

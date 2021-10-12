@@ -1,4 +1,7 @@
-package banking;
+package banking.services;
+
+import banking.models.Company;
+import banking.models.Person;
 
 /**
  * The public methods for the {@link Bank} class.

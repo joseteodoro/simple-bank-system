@@ -1,4 +1,4 @@
-package banking;
+package banking.services;
 
 /**
  * The public methods for the {@link Transaction} class
