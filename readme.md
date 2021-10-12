@@ -1,4 +1,4 @@
-## For cache problem
+## plastic (credid card brands)
 
 For concurrency matters, I’ve added clauses to avoid race conditions. Even pondering  the drawbacks in performance due reentrant-locks.
 
@@ -12,7 +12,7 @@ So, the final solution would be simple: use  treemap to search (nearest value fo
 
 Also added this v2 version using treemap and linkedhashmap in the repository.
 
-## For banking problem
+## Bank system
 
 For concurrency matters, I’ve added clauses to avoid race conditions. Even pondering  the drawbacks in performance due reentrant-locks.
 
